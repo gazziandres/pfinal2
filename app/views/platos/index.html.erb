@@ -1,0 +1,24 @@
+<h1>Ensaladas</h1>
+
+<div class="container">
+  <div class="row">
+    <% @platos.each_slice(4) do |row| %>
+      <% row.each do |plato| %>
+        <div class="col">
+          <div class="card">
+            <%= image_tag plato.photo %>
+            <div class="body">
+              <h4 class="card-img-top"><%= plato.name %></h4>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item"><%= plato.description %></li>
+                <li class="list-group-item">$<%= plato.price %></li>
+              </ul>
+              <%= link_to "Realizar Pedido", plato_orders_path(plato), class: 'btn btn-success', method: :post %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <div class="w-100" style="margin-top:20px;"> </div>
+    <% end %>
+  </div>
+</div>
