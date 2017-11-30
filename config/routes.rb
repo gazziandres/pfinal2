@@ -10,12 +10,13 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :billings, only: [] do
+  resources :billings, only: [:index] do
     collection do
       get 'pre_pay'
+      get 'execute'
     end
   end
-  
+
   root to: 'platos#index'
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
