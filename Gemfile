@@ -14,6 +14,7 @@ gem 'pg', '~> 0.18'
 
 gem 'devise', git: 'https://github.com/plataformatec/devise.git'
 gem 'faker', group: :development
+gem 'font-awesome-sass', '~> 4.7.0'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
