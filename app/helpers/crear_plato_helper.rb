@@ -1,0 +1,2 @@
+module CrearPlatoHelper
+end

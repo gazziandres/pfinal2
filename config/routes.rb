@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'crear_plato/index'
+
   resources :platos, only: :index do
     resources :orders, only: :create
   end
