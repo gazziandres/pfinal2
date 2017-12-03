@@ -7,6 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Plato.destroy_all
+User.destroy_all
+
 
 12.times do |i|
   Plato.create(
@@ -15,4 +17,10 @@ Plato.destroy_all
     description: Faker::Food.ingredient,
     price: Faker::Commerce.price.to_i
   )
+end
+
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+
+10.times do |i|
+  User.create(email:"usuario#{i}@gmail.com", password:'123456')
 end

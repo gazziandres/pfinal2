@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
+  before_action :find_cart
 
   def create
     p = Plato.find(params[:plato_id])
@@ -21,5 +22,11 @@ class OrdersController < ApplicationController
   def index
     @orders = current_user.orders.cart
     @total = @orders.get_total
+  end
+
+  protected
+
+  def find_cart
+    @cart = session[:cart_id] ? Order.find(session[:cart_id]) : current_user.orders.build
   end
 end
