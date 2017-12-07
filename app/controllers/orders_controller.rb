@@ -1,32 +1,79 @@
 class OrdersController < ApplicationController
-  before_action :authenticate_user!
-  before_action :find_cart
+  before_action :set_order, only: [:show, :edit, :update, :destroy]
 
+  # GET /orders
+  # GET /orders.json
+  def index
+    @orders = Order.all
+      @hash = Gmaps4rails.build_markers(@orders) do |order, marker|
+        marker.lat store.latitude
+        marker.lng store.longitude
+      end
+      render json: @hash
+  end
+
+  # GET /orders/1
+  # GET /orders/1.json
+  def show
+  end
+
+  # GET /orders/new
+  def new
+    @order = Order.new
+  end
+
+  # GET /orders/1/edit
+  def edit
+  end
+
+  # POST /orders
+  # POST /orders.json
   def create
-    p = Plato.find(params[:plato_id])
-    o = Order.find_or_create_by(user: current_user, plato: p, payed: false, price: p.price)
-    o.quantity += 1
-    if o.save
-      redirect_to platos_path, notice: 'La orden ha sido ingresada'
-    else
-      redirect_to platos_path, alert: 'La orden NO ha podido ser ingresada'
+    @order = Order.new(order_params)
+
+    respond_to do |format|
+      if @order.save
+        format.html { redirect_to @order, notice: 'Order was successfully created.' }
+        format.json { render :show, status: :created, location: @order }
+      else
+        format.html { render :new }
+        format.json { render json: @order.errors, status: :unprocessable_entity }
+      end
     end
   end
 
-  def clean
-    @orders = Order.where(user: current_user, payed: false)
-    @orders.destroy_all
-    redirect_to orders_path, notice: 'El carro se ha vaciado.'
+  # PATCH/PUT /orders/1
+  # PATCH/PUT /orders/1.json
+  def update
+    respond_to do |format|
+      if @order.update(order_params)
+        format.html { redirect_to @order, notice: 'Order was successfully updated.' }
+        format.json { render :show, status: :ok, location: @order }
+      else
+        format.html { render :edit }
+        format.json { render json: @order.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
-  def index
-    @orders = current_user.orders.cart
-    @total = @orders.get_total
+  # DELETE /orders/1
+  # DELETE /orders/1.json
+  def destroy
+    @order.destroy
+    respond_to do |format|
+      format.html { redirect_to orders_url, notice: 'Order was successfully destroyed.' }
+      format.json { head :no_content }
+    end
   end
 
-  protected
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_order
+      @order = Order.find(params[:id])
+    end
 
-  def find_cart
-    @cart = session[:cart_id] ? Order.find(session[:cart_id]) : current_user.orders.build
-  end
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def order_params
+      params.require(:order).permit(:checked_out_at, :address)
+    end
 end

@@ -33,7 +33,7 @@
                   <li class="list-group"><%= plato.description %></li>
                   <li class="list-group">$<%= plato.price %></li>
                 </ul>
-                <%= link_to "Realizar Pedido", plato_orders_path(plato), class: 'btn btn-success', method: :post %>
+                <%= link_to "Realizar Pedido", envio_index_path, class: 'btn btn-success', method: :post %>
               </div>
             </div>
           </div>

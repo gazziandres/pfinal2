@@ -3,6 +3,10 @@ class Order < ApplicationRecord
   belongs_to :user
   belongs_to :plato
   belongs_to :billing, optional: true
+
+  geocoded_by :address
+  after_validation :geocode
+  
   scope :cart, -> {where(payed: false)}
   scope :in_progress, ->{where("orders.checked_out_at IS NULL")}
   scope :complete, -> {where("orders.checked_out_at IS NOT NULL")}
