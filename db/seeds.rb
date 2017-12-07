@@ -42,9 +42,15 @@ New Orleans, LA 70115
 Upland, CA 91784
 "
 
-addresses = addresses.split("\n")
+address = addresses.split("\n")
 
-addresses.each do |address|
- Order.create!(user_id: rand(1..10), plato_id: rand(1..10), address: address)
+#addresses.each do |address|
+ #Order.create!(user_id: rand(1..10), plato_id: rand(1..10), address: address)
+10.times do |address|
+  Order.create(
+		user: User.first,
+    plato: Plato.first,
+    address: address
+		)
  sleep 1
 end

@@ -18,6 +18,7 @@ gem 'font-awesome-sass', '~> 4.7.0'
 gem 'activeadmin'
 gem 'geocoder'
 gem 'gmaps4rails'
+gem 'omniauth-facebook'
 
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
