@@ -12,7 +12,7 @@ ActiveAdmin.register Order do
   index do
     column("Order", :sortable => :id) {|order| link_to "##{order.id} ", admin_order_path(order) }
     column("State")                   {|order| status_tag(order.state) }
-    column("Date", :checked_out_at)
+    column("Date", :created_at)
     column("Dirección", :address)
     column("Customer", :user, :sortable => :user_id)
     column("Total", :get_total)

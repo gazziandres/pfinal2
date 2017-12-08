@@ -11,7 +11,7 @@ User.destroy_all
 Order.destroy_all
 
 
-#AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
 
 12.times do |x|
   User.create(email:"usuario#{x}@gmail.com", password:'123456')
@@ -26,25 +26,31 @@ end
   )
 end
 
-addresses = "289 Constitution Court
-Liverpool, NY 13090
-8248 Buttonwood Drive
-Herndon, VA 20170
-953 Lake View Lane
-Greensburg, PA 15601
-8489 Smith Store Street
-Wake Forest, NC 27587
-60 Pumpkin Hill Dr.
-South Ozone Park, NY 11420
-923 Wakehurst L
-New Orleans, LA 70115
-995 Lakewood Court
-Upland, CA 91784
-"
+addresses = ["289 Constitution Court",
+"Liverpool, NY 13090",
+"8248 Buttonwood Drive",
+"Herndon, VA 20170",
+"953 Lake View Lane",
+"Greensburg, PA 15601",
+"8489 Smith Store Street",
+"Wake Forest, NC 27587",
+"60 Pumpkin Hill Dr.",
+"South Ozone Park, NY 11420",
+"923 Wakehurst L",
+"New Orleans, LA 70115",
+"995 Lakewood Court",
+"Upland, CA 91784"]
 
-addresses = addresses.split("\n")
-
+#addresses.each do |address|
+ #Order.create!(user_id: rand(1..10), plato_id: rand(1..10), address: address)
 addresses.each do |address|
- Order.create!(user_id: rand(1..10), plato_id: rand(1..10), address: address)
+  order = Order.new(
+		user: User.first,
+    plato: Plato.first,
+    address: address
+		)
+  if order.save!
+    puts "se guardo la orden #{order.id} :)"
+  end
  sleep 1
 end

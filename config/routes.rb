@@ -23,10 +23,7 @@ Rails.application.routes.draw do
     end
   end
 
-  devise_for :users, controllers: {
-   sessions: 'users/sessions',
-   registrations: 'users/registrations'
- }
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
   root to: 'platos#index'
 
