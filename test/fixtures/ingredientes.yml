@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id_tipo: 1
+  nombre: MyString
+  foto: MyString
+  precio: 1
+  grasa: 1
+  grasa_saturada: 1
+  grasa_trans: 1
+  colesterol: 1
+  sodio: 1
+  carbohidrato: 1
+  fibra_dietetica: 1
+  azucar: 1
+  proteina: 1
+
+two:
+  id_tipo: 1
+  nombre: MyString
+  foto: MyString
+  precio: 1
+  grasa: 1
+  grasa_saturada: 1
+  grasa_trans: 1
+  colesterol: 1
+  sodio: 1
+  carbohidrato: 1
+  fibra_dietetica: 1
+  azucar: 1
+  proteina: 1
