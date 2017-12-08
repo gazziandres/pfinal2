@@ -4,12 +4,24 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.all
+    if params[:latitude].present? && if params[:longitude].present?
+      @orders = Order.near(
+        [params[:latitude], params[:longitude]],
+        100,
+        units: :km
+      )
+    else
+      @orders = Order.near(
+        current_user.address,
+        10_000
+        units: :km
+      )
+    end
+
       @hash = Gmaps4rails.build_markers(@orders) do |order, marker|
-        marker.lat store.latitude
-        marker.lng store.longitude
+        marker.lat order.latitude
+        marker.lng order.longitude
       end
-      render json: @hash
   end
 
   # GET /orders/1

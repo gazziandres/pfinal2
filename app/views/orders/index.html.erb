@@ -11,19 +11,46 @@
     </tr>
   </thead>
 
-  <tbody>
-    <% @orders.each do |order| %>
-      <tr>
-        <td><%= order.checked_out_at %></td>
-        <td><%= order.address %></td>
-        <td><%= link_to 'Show', order %></td>
-        <td><%= link_to 'Edit', edit_order_path(order) %></td>
-        <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
+  <tbody id="orders-xyz">
+    <%= render @orders %>
   </tbody>
 </table>
 
 <br>
 
 <%= link_to 'New Order', new_order_path %>
+
+<div style='width: 800px'>
+  <div id="map" style='width: 800px; height: 400px;'></div>
+</div>
+
+<script>
+  handler = Gmaps.build('Google');
+  handler.buildMap({
+    provider: {
+      center: new google.maps.LatLng({lat: -33.401293, lng: -70.578351}),
+      zoom: 13
+    },
+    internal: {
+      id: 'map'
+    }
+  },
+  function(){
+    markers = handler.addMarkers(<%=raw @hash.to_json %>);
+    google.maps.event.addListener(handler.getMap(), "click", function(){
+      console.log("hola");
+    });
+    google.maps.event.addListener(handler.getMap(), 'center_changed', function(){
+      var latitude = handler.getMap().getCenter().lat();
+      var longitude = handler.getMap().getCenter().lng();
+      $.ajax({
+        url: '/orders',
+        type: 'GET',
+        dataType: 'script',
+        data: {latitude: latitude, longitude: longitude}
+      })
+
+    });
+  }
+);
+</script>

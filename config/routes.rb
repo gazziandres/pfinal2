@@ -10,11 +10,7 @@ Rails.application.routes.draw do
     resources :orders, only: :create
   end
 
-  resources :orders, only: :index do
-    collection do
-      get 'clean'
-    end
-  end
+  resources :orders
 
   resources :billings, only: [:index] do
     collection do
