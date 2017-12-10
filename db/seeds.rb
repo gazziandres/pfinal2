@@ -6,6 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+
 Plato.destroy_all
 User.destroy_all
 Order.destroy_all
@@ -17,12 +18,47 @@ AdminUser.create!(email: 'admin@example.com', password: 'password', password_con
   User.create(email:"usuario#{x}@gmail.com", password:'123456')
 end
 
+#Plato.destroy_all
+
 12.times do |i|
-  Plato.create(
-    photo: "https://www.farmboy.ca/wp-content/uploads/2014/12/garden_salad1.jpg",
-    name: Faker::Food.dish,
-    description: Faker::Food.ingredient,
-    price: Faker::Commerce.price.to_i
+#  Plato.create(
+#    photo: "https://www.farmboy.ca/wp-content/uploads/2014/12/garden_salad1.jpg",
+#    name: Faker::Food.dish,
+#    description: Faker::Food.ingredient,
+#    price: Faker::Commerce.price.to_i
+#  )
+
+  random = rand(1..6)
+
+  case random
+  when 1
+    tipo = "Verdes"
+  when 2
+    tipo = "Premium"
+  when 3
+    tipo = "Esencial"
+  when 4
+    tipo = "Otro"
+  when 5
+    tipo = "Proteina"
+  when 6
+    tipo = "Queso"
+  end
+
+  Ingrediente.create(
+    id_tipo: random,
+    nombre: tipo+" "+Faker::Name.first_name,
+    foto: Faker::LoremPixel.image("50x60", true),
+    precio: Faker::Commerce.price.to_i,
+    grasa: rand(30),
+    grasa_saturada: rand(30),
+    grasa_trans: rand(30),
+    colesterol: rand(30),
+    sodio: rand(30),
+    carbohidrato: rand(30),
+    fibra_dietetica: rand(30),
+    azucar: rand(30),
+    proteina: rand(30)
   )
 end
 

@@ -11,7 +11,6 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 20171208001456) do
-
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -57,14 +56,22 @@ ActiveRecord::Schema.define(version: 20171208001456) do
     t.index ["user_id"], name: "index_billings_on_user_id"
   end
 
-  create_table "line_items", force: :cascade do |t|
-    t.integer "order_id"
-    t.integer "plato_id"
-    t.decimal "price"
+  create_table "ingredientes", force: :cascade do |t|
+    t.integer "id_tipo"
+    t.string "nombre"
+    t.string "foto"
+    t.integer "precio"
+    t.integer "grasa"
+    t.integer "grasa_saturada"
+    t.integer "grasa_trans"
+    t.integer "colesterol"
+    t.integer "sodio"
+    t.integer "carbohidrato"
+    t.integer "fibra_dietetica"
+    t.integer "azucar"
+    t.integer "proteina"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["order_id"], name: "index_line_items_on_order_id"
-    t.index ["plato_id"], name: "index_line_items_on_plato_id"
   end
 
   create_table "orders", force: :cascade do |t|

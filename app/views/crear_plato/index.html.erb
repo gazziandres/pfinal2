@@ -1,2 +1,236 @@
-<h1>CrearPlato#index</h1>
-<p>Find me in app/views/crear_plato/index.html.erb</p>
+<h2>Aporte a tu organismo</h2>
+<h4>Valor Nutricional</h4>
+<div class="row">
+  <div class="col-md-2">
+    <div>
+      <%= render 'layouts/tabla_nutricional' %>
+    </div>
+  </div>
+  <div class="ingredientes_crea_plato">
+    <div id="accordion" role="tablist">
+      <div class="offset-md-2 col-md-9 col-sm-12 card">
+        <div class="card-header" role="tab" id="headingOne">
+          <h5 class="mb-0">
+            <a data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              Verdes
+            </a>
+          </h5>
+        </div>
+        <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
+          <div class="card-body">
+            <div class="container margin-top">
+              <div class="row ">
+                <% @verdes.each do |ingrediente| %>
+                <div class="col-md-4">
+                  <div class="">
+                  <%= image_tag ingrediente.foto, class:"img-fluid" %>
+                    <div class="body">
+                      <h4 class="card-img-top"><%= ingrediente.nombre %></h4>
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group">$<%= ingrediente.precio %></li>
+                      </ul>
+                      <%= fa_icon "angle-down", id:"down-#{ingrediente.id}" %>
+                      <span id="text-<%=ingrediente.id %>">0</span>
+                      <%= fa_icon "angle-up", id:"up-#{ingrediente.id}" %>
+                    </div>
+                  </div>
+                </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="offset-md-2 col-md-9 col-sm-12 card">
+        <div class="card-header" role="tab" id="headingTwo">
+          <h5 class="mb-0">
+            <a class="collapsed" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              Premium
+            </a>
+          </h5>
+        </div>
+        <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
+          <div class="card-body">
+            <div class="container">
+              <div class="row ">
+                <% @premium.each do |ingrediente| %>
+                <div class="col-md-4">
+                  <div class="">
+                  <%= image_tag ingrediente.foto, class:"img-fluid" %>
+                    <div class="body">
+                      <h4 class="card-img-top"><%= ingrediente.nombre %></h4>
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group">$<%= ingrediente.precio %></li>
+                      </ul>
+                      <%= fa_icon "angle-down" %>
+                      <input type="text" name="" placeholder="0">
+                      <%= fa_icon "angle-up" %>
+                    </div>
+                  </div>
+                </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="offset-md-2 col-md-9 col-sm-12 card">
+        <div class="card-header" role="tab" id="headingThree">
+          <h5 class="mb-0">
+            <a class="collapsed" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              Esencial
+            </a>
+          </h5>
+        </div>
+        <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion">
+          <div class="card-body">
+            <div class="container">
+              <div class="row ">
+                <% @esencial.each do |ingrediente| %>
+                <div class="col-md-4">
+                  <div class="">
+                  <%= image_tag ingrediente.foto, class:"img-fluid" %>
+                    <div class="body">
+                      <h4 class="card-img-top"><%= ingrediente.nombre %></h4>
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group">$<%= ingrediente.precio %></li>
+                      </ul>
+                      <%= fa_icon "angle-down" %>
+                      <input type="text" name="" placeholder="0">
+                      <%= fa_icon "angle-up" %>
+                    </div>
+                  </div>
+                </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="offset-md-2 col-md-9 col-sm-12 card">
+        <div class="card-header" role="tab" id="headingFour">
+          <h5 class="mb-0">
+            <a class="collapsed" data-toggle="collapse" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+              Otros
+            </a>
+          </h5>
+        </div>
+        <div id="collapseFour" class="collapse" role="tabpanel" aria-labelledby="headingFour" data-parent="#accordion">
+          <div class="card-body">
+            <div class="container">
+              <div class="row ">
+                <% @otro.each do |ingrediente| %>
+                <div class="col-md-4">
+                  <div class="">
+                  <%= image_tag ingrediente.foto, class:"img-fluid" %>
+                    <div class="body">
+                      <h4 class="card-img-top"><%= ingrediente.nombre %></h4>
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group">$<%= ingrediente.precio %></li>
+                      </ul>
+                      <%= fa_icon "angle-down" %>
+                      <input type="text" name="" placeholder="0">
+                      <%= fa_icon "angle-up" %>
+                    </div>
+                  </div>
+                </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="offset-md-2 col-md-9 col-sm-12 card">
+        <div class="card-header" role="tab" id="headingFive">
+          <h5 class="mb-0">
+            <a class="collapsed" data-toggle="collapse" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+              Proteina
+            </a>
+          </h5>
+        </div>
+        <div id="collapseFive" class="collapse" role="tabpanel" aria-labelledby="headingFive" data-parent="#accordion">
+          <div class="card-body">
+            <div class="container">
+              <div class="row ">
+                <% @proteina.each do |ingrediente| %>
+                <div class="col-md-4">
+                  <div class="">
+                  <%= image_tag ingrediente.foto, class:"img-fluid" %>
+                    <div class="body">
+                      <h4 class="card-img-top"><%= ingrediente.nombre %></h4>
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group">$<%= ingrediente.precio %></li>
+                      </ul>
+                      <%= fa_icon "angle-down" %>
+                      <input type="text" name="" placeholder="0">
+                      <%= fa_icon "angle-up" %>
+                    </div>
+                  </div>
+                </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="offset-md-2 col-md-9 col-sm-12 card">
+        <div class="card-header" role="tab" id="headingSix">
+          <h5 class="mb-0">
+            <a class="collapsed" data-toggle="collapse" href="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+              Queso
+            </a>
+          </h5>
+        </div>
+        <div id="collapseSix" class="collapse" role="tabpanel" aria-labelledby="headingSix" data-parent="#accordion">
+          <div class="card-body">
+            <div class="container">
+              <div class="row">
+                <% @queso.each do |ingrediente| %>
+                <div class="col-md-4">
+                  <div class="">
+                  <%= image_tag ingrediente.foto, class:"img-fluid" %>
+                    <div class="body">
+                      <h4 class="card-img-top"><%= ingrediente.nombre %></h4>
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group">$<%= ingrediente.precio %></li>
+                      </ul>
+                      <%= fa_icon "angle-down" %>
+                      <input type="text" name="" placeholder="0">
+                      <%= fa_icon "angle-up" %>
+                    </div>
+                  </div>
+                </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer margin-top">
+  <div class="container">
+    <div class="row">
+      <div class="offset-4 col-md-4">
+        <i><%= fa_icon "facebook-square" %> </i>
+        <i> <%= fa_icon "instagram" %> </i>
+        <i> <%= fa_icon "twitter-square" %> </i>
+      </div>
+    </div>
+    <h5 class="text-muted">Copyright ©2017 Veggie Kings • All Rights reserved.</h5>
+  </div>
+</footer>
+
+<script>
+  $("#up-4").on('click', function(event) {
+    event.stopPropagation();
+    event.preventDefault();
+    var cantidad = parseFloat(cantidad) + parseFloat(1);
+    $("#text-4").text(cantidad);
+    console.log("Clickeamos esta wea");
+  })
+
+
+</script>
