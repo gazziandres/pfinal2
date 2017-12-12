@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'form/envio'
+
+  get 'form/recibo'
+
   get 'geocoder/findaddress'
 
   devise_for :admin_users, ActiveAdmin::Devise.config
