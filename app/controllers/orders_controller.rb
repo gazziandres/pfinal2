@@ -1,9 +1,16 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_order, only: [:show, :edit, :update, :destroy]
 
   # GET /orders
   # GET /orders.json
   def index
+    @orders = current_user.orders.cart
+    @total = @orders.get_total
+    @hash = Gmaps4rails.build_markers(@orders) do |order, marker|
+      marker.lat order.latitude
+      marker.lng order.longitude
+    end
     if params[:latitude].present? && if params[:longitude].present?
       @orders = Order.near(
         [params[:latitude], params[:longitude]],
@@ -13,15 +20,10 @@ class OrdersController < ApplicationController
     else
       @orders = Order.near(
         current_user.address,
-        10_000
+        10_000,
         units: :km
       )
     end
-
-      @hash = Gmaps4rails.build_markers(@orders) do |order, marker|
-        marker.lat order.latitude
-        marker.lng order.longitude
-      end
   end
 
   # GET /orders/1
@@ -41,16 +43,14 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
-    @order = Order.new(order_params)
+    p = Plato.find(params[:plato_id])
+    o = Order.find_or_create_by(user: current_user, plato: p, payed: false, price: p.price, address: current_user.address)
+    o.quantity += 1
 
-    respond_to do |format|
-      if @order.save
-        format.html { redirect_to @order, notice: 'Order was successfully created.' }
-        format.json { render :show, status: :created, location: @order }
-      else
-        format.html { render :new }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
-      end
+    if o.save
+      redirect_to platos_path, notice: "El producto ha sido agregado al carro."
+    else
+      redirect_to platos_path, alert: "El producto NO ha sido agregado al carro"
     end
   end
 
@@ -86,6 +86,7 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:checked_out_at, :address)
+      params.require(:order).permit(:address)
     end
+  end
 end
