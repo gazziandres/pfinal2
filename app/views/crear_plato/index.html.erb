@@ -32,6 +32,7 @@
                       <%= fa_icon "angle-down", id:"down-#{ingrediente.id}" %>
                       <span id="text-<%=ingrediente.id %>">0</span>
                       <%= fa_icon "angle-up", id:"up-#{ingrediente.id}" %>
+                      <%= link_to "Agregar", plato_orders_path(ingrediente), class: 'btn btn-info', method: :post %>
                     </div>
                   </div>
                 </div>
@@ -62,9 +63,9 @@
                       <ul class="list-group list-group-flush">
                         <li class="list-group">$<%= ingrediente.precio %></li>
                       </ul>
-                      <%= fa_icon "angle-down" %>
-                      <input type="text" name="" placeholder="0">
-                      <%= fa_icon "angle-up" %>
+                      <%= fa_icon "angle-down", id:"down-#{ingrediente.id}" %>
+                      <span id="text-<%=ingrediente.id %>">0</span>
+                      <%= fa_icon "angle-up", id:"up-#{ingrediente.id}" %>
                     </div>
                   </div>
                 </div>
@@ -95,9 +96,9 @@
                       <ul class="list-group list-group-flush">
                         <li class="list-group">$<%= ingrediente.precio %></li>
                       </ul>
-                      <%= fa_icon "angle-down" %>
-                      <input type="text" name="" placeholder="0">
-                      <%= fa_icon "angle-up" %>
+                      <%= fa_icon "angle-down", id:"down-#{ingrediente.id}" %>
+                      <span id="text-<%=ingrediente.id %>">0</span>
+                      <%= fa_icon "angle-up", id:"up-#{ingrediente.id}" %>
                     </div>
                   </div>
                 </div>
@@ -128,9 +129,9 @@
                       <ul class="list-group list-group-flush">
                         <li class="list-group">$<%= ingrediente.precio %></li>
                       </ul>
-                      <%= fa_icon "angle-down" %>
-                      <input type="text" name="" placeholder="0">
-                      <%= fa_icon "angle-up" %>
+                      <%= fa_icon "angle-down", id:"down-#{ingrediente.id}" %>
+                      <span id="text-<%=ingrediente.id %>">0</span>
+                      <%= fa_icon "angle-up", id:"up-#{ingrediente.id}" %>
                     </div>
                   </div>
                 </div>
@@ -161,9 +162,9 @@
                       <ul class="list-group list-group-flush">
                         <li class="list-group">$<%= ingrediente.precio %></li>
                       </ul>
-                      <%= fa_icon "angle-down" %>
-                      <input type="text" name="" placeholder="0">
-                      <%= fa_icon "angle-up" %>
+                      <%= fa_icon "angle-down", id:"down-#{ingrediente.id}" %>
+                      <span id="text-<%=ingrediente.id %>">0</span>
+                      <%= fa_icon "angle-up", id:"up-#{ingrediente.id}" %>
                     </div>
                   </div>
                 </div>
@@ -194,9 +195,9 @@
                       <ul class="list-group list-group-flush">
                         <li class="list-group">$<%= ingrediente.precio %></li>
                       </ul>
-                      <%= fa_icon "angle-down" %>
-                      <input type="text" name="" placeholder="0">
-                      <%= fa_icon "angle-up" %>
+                      <%= fa_icon "angle-down", id:"down-#{ingrediente.id}" %>
+                      <span id="text-<%=ingrediente.id %>">0</span>
+                      <%= fa_icon "angle-up", id:"up-#{ingrediente.id}" %>
                     </div>
                   </div>
                 </div>
@@ -213,7 +214,7 @@
 <footer class="footer margin-top">
   <div class="container">
     <div class="row">
-      <div class="offset-4 col-md-4">
+      <div class="offset-md-4 col-md-4">
         <i><%= fa_icon "facebook-square" %> </i>
         <i> <%= fa_icon "instagram" %> </i>
         <i> <%= fa_icon "twitter-square" %> </i>
