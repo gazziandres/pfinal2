@@ -11,12 +11,34 @@
     <%= f.password_field :password, autocomplete: "off" %>
   </div>
 
+  <div class="form-group">
+    <%= f.label :phone %>
+    <%= f.text_field :phone,
+    class: 'form-control',
+      autofocus: true %>
+  </div>
+
+    <div class="form-group">
+      <%= f.label :address %>
+      <div class="row">
+        <div class="col-md-10">
+          <%= f.text_field :address,
+          class: 'form-control'%>
+        </div>
+        <div class="col-md-2">
+          <%= link_to '#', class:"btn btn-primary", id:"find-address" do %>
+            <i class="fa fa-map-marker"> </i>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
   <% if devise_mapping.rememberable? -%>
     <div class="field">
       <%= f.check_box :remember_me %>
       <%= f.label :remember_me %>
     </div>
-  <% end -%>
+  <% end %>
 
   <div class="actions">
     <%= f.submit "Log in" %>
@@ -24,3 +46,38 @@
 <% end %>
 
 <%= render "devise/shared/links" %>
+
+<script>
+$("#find-address").click(function(event){
+$(this).html('<i class="fa fa-spinner fa-spin"> </i>')
+event.preventDefault();
+
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(getAddress);
+  } else {
+    x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+});
+
+function getAddress(position) {
+  var latitude = position.coords.latitude;
+  var longitude = position.coords.longitude;
+  $.ajax({
+    url: '/geocoder/findaddress',
+    type: 'GET',
+    dataType: 'script',
+    data: {latitude: latitude, longitude: longitude}
+  })
+  .done(function() {
+    console.log("success");
+  })
+  .fail(function() {
+    console.log("error");
+  })
+  .always(function() {
+    $("#find-address").html('<i class="fa fa-map-marker"> </i>')
+
+  });
+
+}
+</script>

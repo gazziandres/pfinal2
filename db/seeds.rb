@@ -21,28 +21,28 @@ end
 #Plato.destroy_all
 
 12.times do |i|
-#  Plato.create(
-#    photo: "https://www.farmboy.ca/wp-content/uploads/2014/12/garden_salad1.jpg",
-#    name: Faker::Food.dish,
-#    description: Faker::Food.ingredient,
-#    price: Faker::Commerce.price.to_i
-#  )
+  Plato.create(
+    photo: "https://www.farmboy.ca/wp-content/uploads/2014/12/garden_salad1.jpg",
+    name: Faker::Food.dish,
+    description: Faker::Food.ingredient,
+    price: Faker::Commerce.price.to_i)
+  end
 
   random = rand(1..6)
 
   case random
-  when 1
-    tipo = "Verdes"
-  when 2
-    tipo = "Premium"
-  when 3
-    tipo = "Esencial"
-  when 4
-    tipo = "Otro"
-  when 5
-    tipo = "Proteina"
-  when 6
-    tipo = "Queso"
+    when 1
+      tipo = "Verdes"
+    when 2
+      tipo = "Premium"
+    when 3
+      tipo = "Esencial"
+    when 4
+      tipo = "Otro"
+    when 5
+      tipo = "Proteina"
+    when 6
+      tipo = "Queso"
   end
 
   Ingrediente.create(
@@ -60,9 +60,9 @@ end
     azucar: rand(30),
     proteina: rand(30)
   )
-end
 
-addresses = ["289 Constitution Court",
+
+addresses = ["Av. Apoquindo 6282, Las Condes",
 "Liverpool, NY 13090",
 "8248 Buttonwood Drive",
 "Herndon, VA 20170",
