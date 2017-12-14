@@ -5,7 +5,7 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-    @orders = current_user.orders.cart
+    @orders = current_user.orders {where(payed: false)}
     @total = @orders.get_total
     @hash = Gmaps4rails.build_markers(@orders) do |order, marker|
       marker.lat order.latitude
@@ -24,6 +24,12 @@ class OrdersController < ApplicationController
         units: :km
       )
     end
+  end
+
+  def clean
+    @orders = Order.where(user: current_user, payed: false)
+    @orders.destroy_all
+    redirect_to orders_path, notice: 'El carro se ha vaciado.'
   end
 
   # GET /orders/1
@@ -78,15 +84,18 @@ class OrdersController < ApplicationController
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_order
-      @order = Order.find(params[:id])
-    end
+  def address
+  end
+end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def order_params
-      params.require(:order).permit(:address)
-    end
+private
+# Use callbacks to share common setup or constraints between actions.
+  def set_order
+    @order = Order.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def order_params
+    params.require(:order).permit(:address, :phone)
   end
 end
