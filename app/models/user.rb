@@ -2,6 +2,7 @@ class User < ApplicationRecord
 
   has_many :orders, :dependent => :destroy
   has_many :platos, through: :orders
+  has_many :ingredientes, through: :orders
   has_many :billings
 
   # Include default devise modules. Others available are:
@@ -20,5 +21,6 @@ class User < ApplicationRecord
       user.name = auth.info.name
     end
   end
-
+  validates :email, uniqueness: true
+  validates :password, presence: true
 end

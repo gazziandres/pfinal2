@@ -1,48 +1,37 @@
-<h3>Datos de envío</h3>
 <div class="row justify-content-center">
   <div class="col-4">
-
     <%= form_for(resource,
       as: resource_name,
-      url: orders_path(resource_name),
+      url: pre_pay_billings_url,
+      method: :get,
       html: {class: 'form'}
       ) do |f| %>
       <%= devise_error_messages! %>
-
-      <h2>Datos de Envio</h2>
-
-      <div class="form-group">
-        <%= link_to "Connect With Facebook", "/users/auth/facebook" %>
-      </div>
-
-
+      <h2>Datos de Envío</h2>
       <div class="form-group">
         <%= f.label :phone %>
         <%= f.text_field :phone,
         class: 'form-control',
           autofocus: true %>
       </div>
-
-        <div class="form-group">
-          <%= f.label :address %>
-          <div class="row">
-            <div class="col-md-10">
-              <%= f.text_field :address,
-              class: 'form-control'%>
-            </div>
-            <div class="col-md-2">
-              <%= link_to '#', class:"btn btn-primary", id:"find-address" do %>
-                <i class="fa fa-map-marker"> </i>
-              <% end %>
-            </div>
+      <div class="form-group">
+        <%= f.label :address %>
+        <div class="row">
+          <div class="col-md-10">
+            <%= f.text_field :address,
+            class: 'form-control'%>
+          </div>
+          <div class="col-md-2">
+            <%= link_to '#', class:"btn btn-primary", id:"find-address" do %>
+              <i class="fa fa-map-marker"> </i>
+            <% end %>
           </div>
         </div>
-
-
-        <div class="actions">
-          <%= f.submit "Pagar", class: 'btn btn-success' %>
-        </div>
-        <% end %>
+      </div>
+      <div class="actions">
+        <%= f.submit "Pagar", class: 'btn btn-success' %>
+      </div>
+      <% end %>
     </div>
   </div>
 

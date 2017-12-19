@@ -11,13 +11,16 @@
       <li class="nav-item">
         <a class="nav-link" href="<%= crear_plato_index_path %>">Crear tu plato</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="<%= orders_path %>">Ver mi Pedido</a>
-      </li>
+      <% if user_signed_in? %>
+        <li class="nav-item">
+          <a class="nav-link" href="<%= orders_path %>">Ver mi Pedido</a>
+        </li>
+        <% else %>
+      <% end %>
     </ul>
 
     <ul class="navbar-nav ml-auto">
-        <% if !user_signed_in? %>
+        <% unless user_signed_in? %>
           <li class="nav-item">
           <%= link_to 'Iniciar sesión', new_user_session_path, class: 'nav-link' %>
           </li>

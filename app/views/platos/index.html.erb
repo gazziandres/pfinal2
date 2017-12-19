@@ -1,9 +1,21 @@
-<h1 class="margin-top">Ensaladas</h1>
-
+<div class="jumbotron">
+  <h2>Nuestras Ensaladas</h2>
+  <p>Degusta uno de nuestros exquisitos platos.</p>
+</div>
 <div class="container">
   <div class="row">
     <div class="col-md-2 margin-top">
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <h3>Carta</h3>
+      <table class="table text-center">
+        <th>Platos</th>
+        <th>Precio</th>
+        <% @platos.each do |plato| %>
+        <tr>
+          <td><%= plato.name %></td>
+          <td>$<%= plato.price %></td>
+        </tr>
+        <% end %>
+      </table>
       </div>
       <div class="offset-md-1 col-md-9">
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQb_9TU99HpZYNKsnAW1Glh3HAdeRNKhGzrNu7VodXi3hRrnA9z" alt="">
@@ -39,15 +51,3 @@
     </div>
   </div>
 </div>
-<footer class="footer margin-top">
-  <div class="container">
-    <div class="row">
-      <div class="offset-4 col-md-4">
-        <i><%= fa_icon "facebook-square" %> </i>
-        <i> <%= fa_icon "instagram" %> </i>
-        <i> <%= fa_icon "twitter-square" %> </i>
-      </div>
-    </div>
-    <h5 class="text-muted">Copyright ©2017 Veggie Kings • All Rights reserved.</h5>
-  </div>
-</footer>
