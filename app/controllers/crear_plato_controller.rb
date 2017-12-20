@@ -10,14 +10,13 @@ class CrearPlatoController < ApplicationController
   end
 
   def create
-    p = Ingrediente.find(params[:ingredientes_id])
-    o = Order.find_or_create_by(user: current_user, ingrediente: p, payed: false, price: p.price)
-    o.quantity += 1
+    i = Ingrediente.find(params[:id])
+    p = PlatoCreado.find_or_create_by(ingrediente: i)
 
-    if o.save
-      redirect_to platos_path, notice: "El producto ha sido agregado al carro."
+    if p.save
+      redirect_to platos_path, notice: "El plato se ha creado."
     else
-      redirect_to platos_path, alert: "El producto NO ha sido agregado al carro"
+      redirect_to platos_path, alert: "El plato NO ha sido creado"
     end
   end
 end

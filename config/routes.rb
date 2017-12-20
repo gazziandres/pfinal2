@@ -21,8 +21,14 @@ Rails.application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  get 'crear_plato/index'
-  post 'crear_plato/create'
+
+  resources :crear_plato, only: :index do
+    member do
+      post 'create', as: :nuevo
+    end
+  end
+  #get 'crear_plato/index'
+
   get 'platos/landing'
   get 'orders/address'
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }

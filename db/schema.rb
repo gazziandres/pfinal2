@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171212233740) do
+ActiveRecord::Schema.define(version: 20171220000223) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -102,6 +102,15 @@ ActiveRecord::Schema.define(version: 20171212233740) do
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
+  create_table "plato_creados", force: :cascade do |t|
+    t.bigint "ingrediente_id"
+    t.bigint "plato_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ingrediente_id"], name: "index_plato_creados_on_ingrediente_id"
+    t.index ["plato_id"], name: "index_plato_creados_on_plato_id"
+  end
+
   create_table "platos", force: :cascade do |t|
     t.string "name"
     t.string "photo"
@@ -139,4 +148,6 @@ ActiveRecord::Schema.define(version: 20171212233740) do
   add_foreign_key "orders", "billings"
   add_foreign_key "orders", "platos"
   add_foreign_key "orders", "users"
+  add_foreign_key "plato_creados", "ingredientes"
+  add_foreign_key "plato_creados", "platos"
 end
