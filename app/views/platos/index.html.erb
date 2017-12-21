@@ -1,24 +1,53 @@
-<h1>Ensaladas</h1>
-
+<div class="jumbotron">
+  <h2>Nuestras Ensaladas</h2>
+  <p>Degusta uno de nuestros exquisitos platos.</p>
+</div>
 <div class="container">
   <div class="row">
-    <% @platos.each_slice(4) do |row| %>
-      <% row.each do |plato| %>
-        <div class="col">
-          <div class="card">
-            <%= image_tag plato.photo %>
+    <div class="col-md-2 margin-top">
+      <h3>Carta</h3>
+      <table class="table text-center">
+        <th>Platos</th>
+        <th>Precio</th>
+        <% @platos.each do |plato| %>
+        <tr>
+          <td><%= plato.name %></td>
+          <td>$<%= plato.price %></td>
+        </tr>
+        <% end %>
+      </table>
+      </div>
+      <div class="offset-md-1 col-md-9">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQb_9TU99HpZYNKsnAW1Glh3HAdeRNKhGzrNu7VodXi3hRrnA9z" alt="">
+        <div class="row margin-top">
+          <div class="col-md-4">
             <div class="body">
-              <h4 class="card-img-top"><%= plato.name %></h4>
+              <h4 class="card-img-top">Lorem ipsum dolor sit amet</h4>
               <ul class="list-group list-group-flush">
-                <li class="list-group-item"><%= plato.description %></li>
-                <li class="list-group-item">$<%= plato.price %></li>
+                <li class="list-group-item"><%= link_to 'Crear Plato',crear_plato_index_path, class:"btn btn-success" %></li>
               </ul>
-              <%= link_to "Realizar Pedido", plato_orders_path(plato), class: 'btn btn-success', method: :post %>
             </div>
           </div>
         </div>
-      <% end %>
-      <div class="w-100" style="margin-top:20px;"> </div>
-    <% end %>
+      <% @platos.each_slice(3) do |row| %>
+          <div class="row margin-top">
+            <% row.each do |plato| %>
+            <div class="col-md-4">
+              <div class="seleccionPlato">
+              <%= image_tag plato.photo, class:"img-fluid" %>
+                <div class="body">
+                  <h4 class="card-img-top"><%= plato.name %></h4>
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group"><%= plato.description %></li>
+                    <li class="list-group">$<%= plato.price %></li>
+                  </ul>
+                  <%= link_to "Realizar Pedido", plato_pedido_index_path(plato), class: 'btn btn-success', method: :post %>
+                </div>
+              </div>
+            </div>
+            <% end %>
+          </div>
+        <% end %>
+    </div>
   </div>
 </div>

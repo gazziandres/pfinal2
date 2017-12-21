@@ -1,0 +1,71 @@
+<div class="row justify-content-center">
+  <div class="col-4">
+    <%= form_for(resource,
+      as: resource_name,
+      url: pre_pay_billings_url,
+      method: :get,
+      html: {class: 'form'}
+      ) do |f| %>
+      <%= devise_error_messages! %>
+      <h2>Datos de Envío</h2>
+      <div class="form-group">
+        <%= f.label :phone %>
+        <%= f.text_field :phone,
+        class: 'form-control',
+          autofocus: true %>
+      </div>
+      <div class="form-group">
+        <%= f.label :address %>
+        <div class="row">
+          <div class="col-md-10">
+            <%= f.text_field :address,
+            class: 'form-control'%>
+          </div>
+          <div class="col-md-2">
+            <%= link_to '#', class:"btn btn-primary", id:"find-address" do %>
+              <i class="fa fa-map-marker"> </i>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="actions">
+        <%= f.submit "Pagar", class: 'btn btn-success' %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+  <br><br><br><br><br><br><br><br><br><br>
+  <script>
+    $("#find-address").click(function(event){
+      $(this).html('<i class="fa fa-spinner fa-spin"> </i>')
+      event.preventDefault();
+
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(getAddress);
+        } else {
+          x.innerHTML = "Geolocation is not supported by this browser.";
+        }
+      });
+
+      function getAddress(position) {
+        var latitude = position.coords.latitude;
+        var longitude = position.coords.longitude;
+        $.ajax({
+          url: '/geocoder/findaddress',
+          type: 'GET',
+          dataType: 'script',
+          data: {latitude: latitude, longitude: longitude}
+        })
+        .done(function() {
+          console.log("success");
+        })
+        .fail(function() {
+          console.log("error");
+        })
+        .always(function() {
+          $("#find-address").html('<i class="fa fa-map-marker"> </i>')
+
+        });
+
+      }
+  </script>

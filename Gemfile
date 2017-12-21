@@ -14,6 +14,12 @@ gem 'pg', '~> 0.18'
 
 gem 'devise', git: 'https://github.com/plataformatec/devise.git'
 gem 'faker', group: :development
+gem 'font-awesome-sass', '~> 4.7.0'
+gem 'activeadmin'
+gem 'geocoder'
+gem 'gmaps4rails'
+gem 'omniauth-facebook'
+gem 'font-awesome-rails'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets

@@ -8,6 +8,7 @@ class CreateOrders < ActiveRecord::Migration[5.1]
       t.integer :quantity, default: 0
       t.float :latitude
       t.float :longitude
+      t.datetime :checked_out_at
 
       t.timestamps
     end

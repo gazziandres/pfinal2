@@ -1,5 +1,10 @@
 {
   "name": "veggiekings",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "jquery": "^3.2.1",
+    "popper.js": "^1.12.9",
+    "underscore": "^1.8.3"
+  }
 }

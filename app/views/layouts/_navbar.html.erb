@@ -2,21 +2,45 @@
   <button class="navbar-toggler navbar-toggler-right"navbar-inverse bg-inverse type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <a class="navbar-brand" href="#">Navbar</a>
+  <a class="navbar-brand" href="<%= root_path %>">Navbar</a>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="<%= root_path %>">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="<%= platos_path %>">Menú <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Features</a>
+        <a class="nav-link" href="<%= crear_plato_index_path %>">Crear tu plato</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Pricing</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="<%= orders_path %>">Ver mi Pedido</a>
-      </li>
+      <% if user_signed_in? %>
+        <li class="nav-item">
+          <a class="nav-link" href="<%= orders_path %>">Ver mi Pedido</a>
+        </li>
+        <% else %>
+      <% end %>
     </ul>
+
+    <ul class="navbar-nav ml-auto">
+        <% unless user_signed_in? %>
+          <li class="nav-item">
+          <%= link_to 'Iniciar sesión', new_user_session_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+          <%= link_to 'Registrarse',  new_user_registration_path, class: 'nav-link'%>
+          </li>
+        <% else %>
+        <li class="nav-item">
+          <% if current_user.name.nil? %>
+          <a class="nav-link"><%= current_user.email %></a>
+          <% else %>
+            <a class="nav-link"><%= current_user.name %></a>
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Cerrar sesión', destroy_user_session_path, method: :delete, class: 'nav-link' %>
+        <% end %>
+        </li>
+    </ul>
+
+
   </div>
 </nav>
