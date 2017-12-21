@@ -13,7 +13,7 @@ gem 'paypal-sdk-rest'
 gem 'pg', '~> 0.18'
 
 gem 'devise', git: 'https://github.com/plataformatec/devise.git'
-gem 'faker', group: :development
+gem 'faker'
 gem 'font-awesome-sass', '~> 4.7.0'
 gem 'activeadmin'
 gem 'geocoder'
